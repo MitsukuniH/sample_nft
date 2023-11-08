@@ -1,0 +1,144 @@
+.header{
+    position:fixed;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    top: 0;
+    height: 5rem;
+    width: 100%;
+    border-bottom: 0.2rem solid gray;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:1rem 4rem 1rem 4rem;
+}
+.header h1{
+    color:white;
+    text-shadow:rgb(0, 0, 0) 0.1rem 0.1rem 1rem;
+}
+.form{
+    margin-left:4rem;
+    border: 0.1rem solid gray;
+    box-sizing: border-box;
+    height:2.2rem;
+    border-radius: 0.2rem;
+    width:1fr;
+}
+
+.header form button{
+    color:black;
+    height:2rem;
+    background-color: white;
+    border:none;
+}
+.categorys{
+    text-align: center;
+    height:2rem;
+    width:6rem;
+    border:none;
+    color:black;
+    background-color: white;
+    z-index: 1;
+
+    transition: all 0.2s;
+}
+.categorys:hover{
+    letter-spacing: 0.1rem;
+}
+.categorys:focus{
+    outline:none;
+}
+
+.categorys div:last-child{
+    border:none
+}
+.header form input{
+    margin:0;
+    padding:0;
+    height:2rem;
+    width:20rem;
+    text-decoration: none;
+    border: none;
+    border-left:0.1rem solid gray;
+    border-right:0.1rem solid gray;
+    background-color: white;
+    color:black;
+}
+.header form input:focus{
+    outline:none;
+}
+.submit{
+    width:4rem;
+    transition: all 0.2s;
+}
+.submit:hover{
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+}
+
+.sale{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1rem solid gray;
+    height: 3rem;
+    width: 4rem;
+
+    transition: all 0.2s;
+}
+.sale:hover{
+    cursor: pointer;
+    box-shadow: 0 0.5rem 0.5rem gray;
+    transform:translateY(0.5rem);
+}
+
+.account{
+    width:4rem;
+    height:4rem;
+    border-radius: 50%;
+    border:0.1rem solid gray;
+    background-image: url(/icon.png);
+    background-size: contain;
+}
+.detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:1rem;
+
+    width:10rem;
+    height:0rem;
+    background-color: white;
+    border:0.1rem solid gray;
+    opacity: 1;
+    transform:translateY(3rem);
+    transition: all 0.2s;
+    opacity: 0;
+}
+.detail h3{
+    font-weight: normal;
+    font-size:medium;
+    border-bottom:0.1rem solid gray;
+}
+.detail h3 strong{
+    font-size: x-large;
+}
+.account:hover .detail{
+    height:10rem;
+    opacity: 1;
+}
+
+.overray{
+    position: absolute;
+
+    top:0;
+    left:0;
+    height:100vh;
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}

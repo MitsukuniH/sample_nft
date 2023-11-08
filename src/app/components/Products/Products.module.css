@@ -1,0 +1,147 @@
+.products{
+    display:flex;
+    flex-wrap: wrap;
+}
+.product{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem;
+    height: 10rem;
+    width: 10rem;
+    border-radius: 1rem;
+    border: 0.1rem solid gray;
+    background-size: contain;
+    transition:all 0.2s;
+}
+.product:hover{
+    cursor: pointer;
+    transform:translateY(-0.5rem);
+    box-shadow: 0 0.5rem 0.5rem gray;
+}
+.title{
+    background-color: rgba(0, 0, 0, 0.5);
+    color:white;
+    text-align: center;
+    font-size: larger;
+    border-radius:0 1rem 1rem 0;
+    height:2rem;
+    margin:1rem 1rem 0 0;
+}
+.price{
+    background-color: rgba(0, 0, 0, 0.5);
+    color:white;
+    text-align: center;
+    font-size: larger;
+    border-radius:1rem 0 0 1rem;
+    height:2rem;
+    margin:0 0 1rem 1rem;
+}
+
+.overray{
+    position:fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width:100%;
+}
+.modal{
+    position: fixed;
+    top:8rem;
+    left:50%;
+    transform:translateX(-16rem);
+    background-color: white;
+    width:32rem;
+    height:32rem;
+    z-index: 10;
+    padding:1rem;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition:all 0.5s;
+}
+
+.hide_modal{
+    height:0rem;
+    transform:translateX(-20rem);
+    transition:all 0.5s;
+    background-color: white;
+    width:40rem;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.icon{
+    width:14rem;
+    height:14rem;
+    border:0.1rem solid gray;
+}
+.text{
+    font-weight: normal;
+    font-size:medium;
+    border-bottom:0.1rem solid gray;
+    width:10rem;
+    text-align: end;
+}
+.text strong{
+    font-size: x-large;
+}
+.describe{
+    margin: 2rem 0 2rem 0;
+    width:26rem;
+    height:7rem;
+}
+.modal button{
+    width:100%;
+    height:5rem;
+}
+.result{
+    padding:1rem;
+    position:fixed;
+    background-color: white;
+    width:20rem;
+    height:15rem;
+    top:15rem;
+    left:50%;
+    transform:translateX(-10rem);
+    z-index:20;
+    transition:all 0.5s;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.close_res{
+    transition:all 0.2s;
+    width:20rem;
+    height:10rem;
+    left:50%;
+    transform:translateX(-10rem);
+    top:0;
+}
+.result button{
+    height:3rem;
+    width: 100%;
+}
+.result .after_balance strong{
+    font-size: xx-large;
+    animation: slide_in 1s forwards ease-out;
+}
+@keyframes slide_in {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

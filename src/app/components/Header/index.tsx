@@ -33,19 +33,21 @@ export const Header = (
 
   return(
     <header className={style.header}>
+			<img className={style.degicaliicon} src={`/degicaliicon.png`}/>
       <h1>degicali</h1>
       <form>
         <div className={style.form}>
 					<select className={style.categorys} onChange={e=>setCategory(e.target.value)}>
-						<option value="all">Category</option>
+						<option value="all">カテゴリー</option>
 						{categorys.map((v,i)=>(<option value={v} key={i}>{v}</option>))}
 					</select>
 						
           <input type="text" value={search} onChange={handleChange}/>
-          <button className={style.submit} type="button" onClick={handleSubmit}>Search</button>
+          <button className={style.submit} type="button" onClick={handleSubmit}>検索</button>
         </div>
       </form>
 			<div className={style.sale} onClick={()=>setShowPutupMenu(true)}>PUT UP</div>
+			<div className={style.community}>コミュニティ</div>
 			<div className={style.account}>
 				<div className={style.detail}>
 					<h2>User01</h2>

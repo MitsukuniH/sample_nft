@@ -34,6 +34,7 @@ export const Products = (
 				return(
 					<div key={i} className={style.product} style={{backgroundImage:`url(/${ConvCategory[e.category]}.png)`}} onClick={()=>handleClick(i)}>
 						<div className={style.title}>{e.name}</div>
+						<div className={style.pricetag}>価格</div>
 						<div className={style.price}>{e.price}ETH</div>
 					</div>
 				)

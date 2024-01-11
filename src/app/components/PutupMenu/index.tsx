@@ -82,7 +82,7 @@ export const PopupMenu = ({
 		[title, price, category, describe, data].forEach((v,i)=>{
 			console.log(v);
 			if(v==undefined||!isSuccess){
-				setError(`Please fill information ${i}`);
+				setError(`${i}項目未記入です`);
 				isSuccess = false;
 			}
 		})
@@ -105,36 +105,36 @@ export const PopupMenu = ({
 	}
   return(
 		<div className={styles.putup}>
-			<div>
-				<h1>SALE</h1>
+			<div className={styles.inside}> 
+				{/* <h1>SALE</h1> */}
 				<div className={styles.setting}>
 					<div className={styles.inputZone}>
 						<div className={styles.dropSpace} onDrop={handleDrop} onDragOver={(e)=>{e.preventDefault()}}>drag & drop file to sale</div>
-						<input type='file' accept='*' onChange={handleFileUpload}></input>
+						<input className={styles.file} type='file' accept='*' onChange={handleFileUpload}></input>
 					</div>
 					<div className={styles.inputs}>
 						<div className={styles.form_with_label}>
-							<label htmlFor="title">Title</label>
+							<label htmlFor="title">作品名</label>
 							<input id="title" type="text" onChange={e=>setTitle(e.currentTarget.value)} value={title}/>
 						</div>
 						<div className={styles.form_with_label}>
-							<label htmlFor="title">Category</label>
+							<label htmlFor="title">カテゴリー</label>
 							<select value={category} onChange={e=>{setCategory(Number(e.currentTarget.value));console.log("change")}}>
-								<option value={Category.image}>image</option>
-								<option value={Category.music}>music</option>
+								<option value={Category.image}>画像</option>
+								<option value={Category.music}>音楽</option>
 								<option value={Category.script}>script</option>
-								<option value={Category.data}>data</option>
+								<option value={Category.data}>データ</option>
 							</select>
 						</div>
 						<div className={styles.form_with_label}>
-							<label htmlFor="price">Price</label>
+							<label htmlFor="price">価格</label>
 							<input id="price" type="number" onChange={e=>setPrice(Number(e.currentTarget.value))} value={price}/>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div className={styles.describe}>
-				<label htmlFor="describe">Describe</label>
+				<label htmlFor="describe">詳細説明</label>
 				<textarea id="describe" onChange={e=>setDescribe(e.currentTarget.value)} value={describe} rows={7}/>
 			</div>
 			<button onClick={handleSubmit}>PUT UP</button>

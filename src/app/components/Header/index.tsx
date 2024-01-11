@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import style from "./Header.module.css"
 import { PopupMenu } from "../PutupMenu";
+import { Category, ConvCategory, Product } from "@/app/Types";
 
 export const Header = (
 	{setProducts, setFiltereds, products, balance, setBalance}:
@@ -12,11 +13,9 @@ export const Header = (
 		setBalance:Dispatch<SetStateAction<number>>
 	}
 	)=>{
-  const [showPutupMenu, setShowPutupMenu] = useState<boolean>(false);
-  const [search, setSearch] = useState<string>("");
-	const [category, setCategory] =useState<string>("all");
-
-  const categorys = ["all", "image", "music", "script", "data"];
+  	const [showPutupMenu, setShowPutupMenu] = useState<boolean>(false);
+  	const [search, setSearch] = useState<string>("");
+	const [category, setCategory] =useState<Category>(4);
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) =>{
     setSearch(e.target.value);
@@ -24,7 +23,7 @@ export const Header = (
 	const handleSubmit = ()=>{
 		var f = [...products];
 		if(search != "") f=f.filter(v=>v.name.includes(search));
-		if(category != "" && category != "all") f=f.filter(v=>v.category==category);
+		if(category != Category.all) f=f.filter(v=>v.category==category);
 		
 
 		console.log(f)
@@ -37,7 +36,7 @@ export const Header = (
       <h1>degicali</h1>
       <form>
         <div className={style.form}>
-					<select className={style.categorys} onChange={e=>setCategory(e.target.value)}>
+					<select className={style.categorys} onChange={e=>setCategory(Number(e.target.value))}>
 						<option value="all">カテゴリー</option>
 						{categorys.map((v,i)=>(<option value={v} key={i}>{v}</option>))}
 					</select>
@@ -57,7 +56,7 @@ export const Header = (
 
 			{showPutupMenu?
 			<div >
-				<PopupMenu setProducts={setProducts}/>
+				<PopupMenu setProducts={setProducts} setShowModal={setShowPutupMenu}/>
 
 				<div className={style.overray} onClick={()=>setShowPutupMenu(false)}></div>
 			</div>

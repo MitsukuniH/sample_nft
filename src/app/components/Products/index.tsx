@@ -1,14 +1,15 @@
+import { ConvCategory, Product } from "@/app/Types";
 import style from "@/app/components/Products/Products.module.css"
+import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
-
 export const Products = (
-	{products, removeProduct, balance, setBalance}:{products:Product[], removeProduct:(index:number)=>void, balance:number, setBalance:Dispatch<SetStateAction<number>>}
+	{products, balance, setBalance}:{products:Product[], balance:number, setBalance:Dispatch<SetStateAction<number>>}
 )=>{
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const [showRes, setShowRes] = useState<boolean>(false);
 	const [selected, setSelected] = useState<number>(0);
 	const pro_data = products;
-  console.log(products);
+	console.log(products);
 
 	const handleClick = (index:number) =>{
 		setShowModal(true);
@@ -24,7 +25,6 @@ export const Products = (
 		setShowRes(true);
 	}
 	const handleCont = ()=>{
-		removeProduct(selected)
 		setShowModal(false);
 		setShowRes(false)
 	}
@@ -32,7 +32,7 @@ export const Products = (
     <div className={style.products}>
       {pro_data.map((e,i)=>{
 				return(
-					<div key={i} className={style.product} style={{backgroundImage:`url(/${e.category}.png)`}} onClick={()=>handleClick(i)}>
+					<div key={i} className={style.product} style={{backgroundImage:`url(/${ConvCategory[e.category]}.png)`}} onClick={()=>handleClick(i)}>
 						<div className={style.title}>{e.name}</div>
 						<div className={style.pricetag}>価格</div>
 						<div className={style.price}>{e.price}ETH</div>
@@ -43,7 +43,7 @@ export const Products = (
 				<div className={style.overray} onClick={()=>setShowModal(false)}/>
 				<div className={showModal?style.modal:style.hide_modal}>
 					<div style={{display:"flex"}}>
-						<img className={style.icon} src={`/${products[selected].category}.png`}/>
+						<img className={style.icon} src={`/${ConvCategory[products[selected].category]}.png`}/>
 						<div className={style.info}>
 							<h1>{products[selected].name}</h1>
 							<div className={style.text}>

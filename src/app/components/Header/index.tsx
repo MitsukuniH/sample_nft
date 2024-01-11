@@ -38,7 +38,7 @@ export const Header = (
         <div className={style.form}>
 					<select className={style.categorys} onChange={e=>setCategory(Number(e.target.value))}>
 						<option value="all">カテゴリー</option>
-						{categorys.map((v,i)=>(<option value={v} key={i}>{v}</option>))}
+						{ConvCategory.map((v,i)=>(<option value={v} key={i}>{v}</option>))}
 					</select>
 						
           <input type="text" value={search} onChange={handleChange}/>

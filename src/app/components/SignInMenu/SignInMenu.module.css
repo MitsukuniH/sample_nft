@@ -1,0 +1,32 @@
+.signin{
+    position: absolute;
+    top:8rem;
+    left:50%;
+    transform:translateX(-12rem);
+    background-color: white;
+    width:32rem;
+    height:24rem;
+    z-index: 10;
+    padding:1rem;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signin h1{
+    margin: 2rem 0 2rem 0;
+}
+.input{
+    width:20rem;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.input label{
+    width:7rem;
+}
+.input input{
+    width:12rem;
+}

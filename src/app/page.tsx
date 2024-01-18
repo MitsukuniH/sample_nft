@@ -3,48 +3,57 @@ import styles from './page.module.css'
 import { Header } from './components/Header'
 import { Products } from './components/Products'
 import { useEffect, useState } from 'react'
-import { getGoodsList } from './Hooks'
-import { Product } from './Types'
+import { getCommunity, getGoodsList, getMe } from './Hooks'
+import { Community, Product, User } from './Types'
 import { useSearchParams } from 'next/navigation'
+import { Chat } from './components/Chat'
 
 export default function Home() {
-  // const [products, setProducts] = useState<Product[]>([
-  //   {user_id:1, name:"illust00", category:"image", price:0.15, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"illust01", category:"image", price:0.20, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song00", category:"music", price:0.25, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"code00", category:"script", price:0.30, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"stack00", category:"data", price:0.10, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"stack01", category:"data", price:0.35, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"illust02", category:"image", price:0.20, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"code01", category:"script", price:0.10, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song01", category:"music", price:0.40, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song02", category:"music", price:0.25, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"illust03", category:"image", price:0.15, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"illust04", category:"image", price:0.20, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song03", category:"music", price:0.25, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"code02", category:"script", price:0.30, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"stack02", category:"data", price:0.10, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"stack03", category:"data", price:0.35, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"illust05", category:"image", price:0.20, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"code03", category:"script", price:0.10, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song04", category:"music", price:0.40, describe:"this is image work.this is image work.", content:""},
-  //   {user_id:1, name:"song05", category:"music", price:0.25, describe:"this is image work.this is image work.", content:""},
-  // ])
+  const [community, setCommunity] = useState<Community>()
+	const [user, setUser] = useState<User>()
   const [products, setProducts] = useState<Product[]>([
-    {owner_id:1, name:"illust00", category:0, price:0.15, describe:"this is image work.this is image work.", content:"", posted_at:""}
+    {id: 1,owner_id:1, name:"illust00", category:0, price:0.15, describe:"this is image work.this is image work.", content:"", posted_at:""}
   ])
-  const [balance, setBalance] = useState<number>(1000);
+
+  const [update, setUpdate] = useState<boolean>(true);
   const query_param = useSearchParams();
   
   useEffect(()=>{
-    getGoodsList({name:query_param.get("name"), category:query_param.get("category")}, setProducts)
-  }, [])
+    if(!update)return;
+
+    ( async ()=>{
+      const me:User | undefined = await getMe();
+      if(!me) return;
+  
+      setUser({id: me.id, username:me.username, balance:me.balance})
+    })()
+    getGoodsList(setProducts, query_param.get("search"), query_param.get("community"))
+
+    setUpdate(false);
+    console.log("----updated-----")
+  }, [update])
+
+  useEffect(()=>{
+    (async ()=>{
+      const  q_com = Number(query_param.get("community"));
+      console.log("--------reload-------")
+      if(q_com) {
+        const data = await getCommunity(q_com);
+        if(!data) console.log("----data is none-----")
+        console.log(data);
+        setCommunity(data);
+      }
+    })()
+  },[])
 
   return (
     <main className={styles.main}>
-      <Header setProducts={setProducts} setFiltereds={setProducts} products={products} setBalance={setBalance} balance={balance}/>
+      <Header setFiltereds={setProducts} products={products} user={user} setUpdate={setUpdate}/>
       <div>
-        <Products products={products} setBalance={setBalance} balance={balance}/>
+        {community&&user?
+        <Chat user={user} community_id={community.id}/>
+        :<></>}
+        <Products products={products} user={user} setUpdate={setUpdate}/>
       </div>
     </main>
   )

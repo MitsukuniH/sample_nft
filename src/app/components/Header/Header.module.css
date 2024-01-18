@@ -87,9 +87,25 @@
     transition: all 0.2s;
 }
 .sale:hover{
+    text-shadow: rgb(128, 128, 0) 0.2rem 0.5rem 0.2rem;
     cursor: pointer;
-    box-shadow: 0 0.5rem 0.5rem gray;
-    transform:translateY(0.5rem);
+    transform:translateY(-0.5rem);
+}
+
+.community{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 0.1rem solid gray; */
+    height: 3rem;
+    width: 10rem;
+
+    transition: all 0.2s;
+}
+.community:hover{
+    text-shadow: rgb(128, 128, 0) 0.2rem 0.5rem 0.2rem;
+    cursor: pointer;
+    transform:translateY(-0.5rem);
 }
 
 .account{
@@ -97,7 +113,6 @@
     height:4rem;
     border-radius: 50%;
     border:0.1rem solid gray;
-    background-image: url(/icon.png);
     background-size: contain;
 }
 .detail{
@@ -144,6 +159,6 @@
 }
 
 .degicaliicon{
-    width:3rem;
-    height:3rem;
+    width:14rem;
+    height:4.5rem;
 }

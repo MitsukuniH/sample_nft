@@ -1,0 +1,46 @@
+.content{
+    position: absolute;
+    top:8rem;
+    left:50%;
+    transform:translateX(-12rem);
+    background-color: white;
+    width:32rem;
+    height:fit-content;
+    z-index: 10;
+    border-radius: 1rem;
+}
+.content h1{
+    height: 3rem;
+    text-align: center;
+    border-bottom: 0.1rem solid;
+}
+
+.communities{
+    overflow: hidden;
+    height: 20rem;
+}
+.community{
+    min-height: 3.5rem;
+    display: flex;
+    border-bottom: 0.1rem solid;
+    padding: 0.5rem 0;
+}
+.community:hover{
+    cursor: pointer;
+}
+.community img{
+    height: 3rem;
+    width: 3rem;
+}
+.community div{
+    font-size: larger;
+}
+
+.close{
+    height: 2rem;
+    text-align: center;
+    border-top: 0.1rem solid;
+}
+.close:hover{
+    cursor: pointer;
+}
